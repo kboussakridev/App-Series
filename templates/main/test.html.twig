@@ -1,14 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Series!</title>
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div>
+    {{ "Now"|date('D, d M Y H:i:s') }}
+</div>
+<div>
+    <h1>Testou</h1>
+</div>
 
 
-</head>
-<body>
-<h1>Testou</h1>
-</body>
-</html>
+<div>
+    {# créer une variable !  #}
+    {% set name = "Karim" %}
+    <h2>{{ name | upper }}</h2>
+
+    {# créer un tableau !  #}
+    {% set colors = ["orange","brown","turquoise","blue","red","green"] %}
+    <div>
+        <b>Nombre de couleurs : {{ colors|length }}</b>
+    </div>
+    <div>{{ colors|join('/') }}</div>
+    {% for color in colors %}
+        <div>{{ loop.index }}</div>
+        <div style="background: {{ color }}">{{ color }}</div>
+    {% endfor %}
+
+    {# un objet #}
+    {% set book = {
+        title: 'Pifpaf',
+        year: 2000,
+        author: 'John Doe'
+    } %}
+    <h3>{{ book.author }}</h3>
+    <div>
+        {% for key, val in book %}
+            <div>{{ key }}: {{ val }}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block title %}{{ parent() }} | testounet {% endblock %}
