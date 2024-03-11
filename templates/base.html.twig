@@ -8,15 +8,28 @@
     <link rel="stylesheet" href="{{ asset('asset/css/normalisze.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/css/app.css') }}">
     <link rel="icon" href="{{ asset('asset/img/icon.png') }}">
+   {# #} <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet">
 
+    {%  block extrastyles %}{% endblock %}
 </head>
-<body>
+<body class="text-white bg-dark">
+
 <div class="container">
 <header>
     <h1><a href="{{ path('main_home') }}"><img src="{{ asset('asset/img/logo.svg') }}" alt="Series !"></a></h1>
 
     {% include('inc/nav.html.twig') %}
 </header>
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
 <main>
     {% block body %}{% endblock %}
 </main>
